@@ -40,7 +40,7 @@ export default function Header() {
           className="cursor-pointer flex items-center gap-2 group" 
           onClick={() => { router.push('/') }}
         >
-          <div className="relative w-10 h-10">
+          <div className="relative w-30 h-10">
              <Image
               src="/gl.png"
               alt="GlowLogics Logo"
@@ -48,9 +48,6 @@ export default function Header() {
               className="object-contain"
             />
           </div>
-          <span className="text-xl font-bold tracking-tight text-gray-900">
-            Glow<span className="text-primary">Logics</span>
-          </span>
         </div>
         
         <nav className="hidden md:flex items-center gap-8">

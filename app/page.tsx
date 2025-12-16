@@ -7,8 +7,8 @@ export default function Home() {
       <section className="relative flex flex-col items-center justify-center text-center px-4 pt-32 pb-20">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="inline-block">
-            <span className="px-3 py-1 rounded-md bg-orange-50 text-sm font-medium text-primary border border-orange-100">
-              Revolutionizing Digital Workflows
+            <span className="px-3 py-1 rounded-md text-sm font-medium text-primary border border-orange-100">
+              Revolutionizing EdTech with AI-Powered Solutions
             </span>
           </div>
           
