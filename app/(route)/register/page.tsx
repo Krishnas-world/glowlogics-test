@@ -1,32 +1,22 @@
-'use client'
+"use client";
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         setLoading(true);
-        const form = event.target as HTMLFormElement;
-        const username = (form.elements.namedItem('username') as HTMLInputElement).value;
-        const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+        
+        // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        const envUsername = process.env.NEXT_PUBLIC_USERNAME;
-        const envPassword = process.env.NEXT_PUBLIC_PASSWORD;
-
-        if (username === envUsername && password === envPassword) {
-            console.log('Login successful');
-            document.cookie = `loggedIn=true; path=/; max-age=86400`;
-            document.cookie = `username=${username}; path=/; max-age=86400`;
-            
-            router.push('/dashboard');
-        } else {
-            console.log('Invalid credentials');
-            alert('Invalid username or password.');
-        }
+        // Dummy registration success
+        alert('Registration successful! Please login with your credentials.');
+        router.push('/login');
+        
         setLoading(false);
     }
 
@@ -34,17 +24,27 @@ export default function LoginPage() {
         <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
             <div className="card p-8 md:p-10 rounded-lg w-full max-w-md">
                 <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-                    <p className="text-gray-600 text-sm">Enter your credentials to access your workspace.</p>
+                    <h1 className="text-2xl font-bold text-gray-900 mb-2">Create Account</h1>
+                    <p className="text-gray-600 text-sm">Sign up to get started with GlowLogics.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700 ml-1">Full Name</label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="John Doe"
+                            className="w-full bg-white border border-gray-300 rounded-md px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-700 ml-1">Username</label>
                         <input
                             type="text"
-                            name="username"
-                            placeholder="Enter your username"
+                            required
+                            placeholder="johndoe"
                             className="w-full bg-white border border-gray-300 rounded-md px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                         />
                     </div>
@@ -53,7 +53,7 @@ export default function LoginPage() {
                         <label className="text-sm font-medium text-gray-700 ml-1">Password</label>
                         <input
                             type="password"
-                            name="password"
+                            required
                             placeholder="••••••••"
                             className="w-full bg-white border border-gray-300 rounded-md px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                         />
@@ -69,16 +69,15 @@ export default function LoginPage() {
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
-                        ) : 'Sign In'}
+                        ) : 'Register'}
                     </button>
                 </form>
                 
-                <div className="mt-6 text-center space-y-2">
-                    <a href="#" className="block text-sm text-gray-500 hover:text-primary transition-colors">Forgot your password?</a>
+                <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600">
-                        Don't have an account?{' '}
-                        <a href="/register" className="text-primary hover:text-primary-dark font-medium transition-colors">
-                            Register
+                        Already have an account?{' '}
+                        <a href="/login" className="text-primary hover:text-primary-dark font-medium transition-colors">
+                            Sign in
                         </a>
                     </p>
                 </div>
