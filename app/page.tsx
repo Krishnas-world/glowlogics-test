@@ -7,7 +7,6 @@ export default function Home() {
       {/* We need to make a landing page for glowlogics */}
       <h2 className="text-4xl font-bold mb-4 text-black">Welcome to GlowLogics!</h2>
       <p className="text-lg mb-8 text-black">Innovative Solutions for Modern Problems</p>
-      
     </div>
   );
 }

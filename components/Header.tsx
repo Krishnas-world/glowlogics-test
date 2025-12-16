@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function Header() {
   const router = useRouter();
-  function handleLogin(){
+  function handleLogin() {
     router.push('/login');
   }
   return (
@@ -17,6 +17,7 @@ export default function Header() {
           alt="GlowLogics Logo"
           width={200}
           height={200}
+          onClick={() => { router.push('/') }}
         />
         <div>
           <button className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition" onClick={handleLogin}>
