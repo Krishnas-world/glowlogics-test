@@ -1,11 +1,24 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        const getCookie = (name: string) => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop()?.split(';').shift();
+        };
 
+        const loggedIn = getCookie('loggedIn');
+        const user = getCookie('username');
+
+        if (loggedIn === 'true') {
+            router.push('/dashboard');
+        }
+    }, []);
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         setLoading(true);
@@ -21,7 +34,7 @@ export default function LoginPage() {
             console.log('Login successful');
             document.cookie = `loggedIn=true; path=/; max-age=86400`;
             document.cookie = `username=${username}; path=/; max-age=86400`;
-            
+
             router.push('/dashboard');
         } else {
             console.log('Invalid credentials');
@@ -48,7 +61,7 @@ export default function LoginPage() {
                             className="w-full bg-white border border-gray-300 rounded-md px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                         />
                     </div>
-                    
+
                     <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-700 ml-1">Password</label>
                         <input
@@ -72,7 +85,7 @@ export default function LoginPage() {
                         ) : 'Sign In'}
                     </button>
                 </form>
-                
+
                 <div className="mt-6 text-center space-y-2">
                     <a href="#" className="block text-sm text-gray-500 hover:text-primary transition-colors">Forgot your password?</a>
                     <p className="text-sm text-gray-600">
