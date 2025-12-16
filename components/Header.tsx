@@ -8,8 +8,6 @@ export default function Header() {
   const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check for loggedIn cookie and username
-    // Simple cookie parser
     const getCookie = (name: string) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
@@ -29,7 +27,6 @@ export default function Header() {
   }
 
   function handleLogout() {
-    // Clear cookies
     document.cookie = "loggedIn=; path=/; max-age=0";
     document.cookie = "username=; path=/; max-age=0";
     setUsername(null);

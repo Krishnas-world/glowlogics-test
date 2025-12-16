@@ -3,8 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
-    
-    // Protect /dashboard route
+
     if (url.pathname.startsWith('/dashboard')) {
         const isLoggedIn = request.cookies.get('loggedIn')?.value === 'true';
         if (!isLoggedIn) {

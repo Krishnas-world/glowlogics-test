@@ -10,10 +10,8 @@ export default function RegisterPage() {
         event.preventDefault();
         setLoading(true);
         
-        // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        // Dummy registration success
         alert('Registration successful! Please login with your credentials.');
         router.push('/login');
         
